@@ -1,0 +1,16 @@
+export const genres = [
+  { label: "Action", href: "/" },
+  { label: "Anak-anak", href: "/" },
+  { label: "Anime", href: "/" },
+  { label: "Britania", href: "/" },
+  { label: "Drama", href: "/" },
+  { label: "Fantasi Ilmiah", href: "/" },
+  { label: "Kejahatan", href: "/" },
+  { label: "KDrama", href: "/" },
+  { label: "Komedi", href: "/" },
+  { label: "Petualangan", href: "/" },
+  { label: "Perang", href: "/" },
+  { label: "Romantis", href: "/" },
+  { label: "Sains & Alam", href: "/" },
+  { label: "Thriller", href: "/" },
+];

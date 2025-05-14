@@ -1,0 +1,17 @@
+{
+  "name": "chill-react-react",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev:client": "cd client && bun run dev",
+    "dev:server": "cd server && bun run dev",
+    "dev": "concurrently \"bun run dev:client\" \"bun run dev:server\"",
+    "lint": "biome lint .",
+    "lint:fix": "biome check . --apply-unsafe"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "concurrently": "^9.1.2"
+  }
+}
