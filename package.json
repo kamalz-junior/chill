@@ -1,5 +1,5 @@
 {
-  "name": "chill-react-react",
+  "name": "chill",
   "private": true,
   "version": "0.1.0",
   "workspaces": ["client", "server"],
