@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Button, {} from "~/components/ui/button";
 import Input from "~/components/ui/input";
-import { createUser } from "~/lib/api";
+import { signUp } from "~/lib/actions";
 
 export default function SignUp() {
   const [user, setUser] = useState({
+    name: "",
     username: "",
+    email: "",
     password: "",
   });
 
@@ -15,7 +17,7 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await createUser(user).then(()=> {
+    await signUp(user).then(()=> {
       navigate("/sign-in");
     })
   };
@@ -33,6 +35,23 @@ export default function SignUp() {
         </div>
         <form action="" className="space-y-4" onSubmit={handleSubmit}>
           <div className="grid gap-2">
+            <label htmlFor="name" className="font-medium text-sm">
+              Name
+            </label>
+            <Input
+              id="name"
+              defaultValue={user.name}
+              placeholder="Masukan nama"
+              onChange={(e) =>
+                setUser({
+                  ...user,
+                  name: e.target.value,
+                })
+              }
+              required
+            />
+          </div>
+          <div className="grid gap-2">
             <label htmlFor="username" className="font-medium text-sm">
               Username
             </label>
@@ -44,6 +63,24 @@ export default function SignUp() {
                 setUser({
                   ...user,
                   username: e.target.value,
+                })
+              }
+              required
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="email" className="font-medium text-sm">
+              Email
+            </label>
+            <Input
+              id="email"
+              type="email"
+              defaultValue={user.email}
+              placeholder="Masukan email"
+              onChange={(e) =>
+                setUser({
+                  ...user,
+                  email: e.target.value,
                 })
               }
               required

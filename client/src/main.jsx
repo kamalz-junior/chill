@@ -15,7 +15,6 @@ import Watch from "~/pages/watch";
 import Watchlist from "~/pages/watchlist";
 import CardSubscibe from "./components/card-subscribe";
 import Premium from "./pages/premium";
-import WatchMovie from "./pages/watch-movie";
 import MovieDetail from "~/pages/movie-detail";
 import SeriesDetail from "~/pages/series-detail";
 
@@ -35,7 +34,6 @@ root.render(
           <Route path="series" element={<Series />} />
           <Route path="series/:seriesId" element={<SeriesDetail />} />
           <Route path="watch" element={<Watch />} />
-          <Route path="watch-movie" element={<WatchMovie />} />
           <Route path="watchlist" element={<Watchlist />} />
           <Route path="profile" element={<Profile />} />
           <Route path="premium" element={<Premium />} />

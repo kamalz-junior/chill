@@ -3,10 +3,12 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router";
 import Button, { button } from "~/components/ui/button";
 import useClickOutside from "~/hooks/use-click-outside";
+import { useUser } from "~/lib/store";
 
 export default function UserNav() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { user, setUser } = useUser();
 
   const ref = useClickOutside(() => setIsOpen(false));
 
@@ -18,7 +20,7 @@ export default function UserNav() {
         onClick={() => setIsOpen(!isOpen)}
         className="rounded-full"
       >
-        <img src="\images\Profile.png" alt="" className="" />
+        <img src={`http://localhost:8080/uploads${user.avatar_path}`} alt={user.name} className="rounded-full w-9 h-9 object-cover absolute"/>
       </Button>
 
       {isOpen ? (

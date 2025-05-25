@@ -1,16 +1,25 @@
-import { getUsers } from "~/lib/api";
+export async function signUp(data) {
+  const response = await fetch("/api/auth/register", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 
-export async function signIn(value){
-    const users = await getUsers();
+  if (!response.ok) {
+    return new Error(response.statusText);
+  }
 
-    const existingUser = users.find((user) => user.username === value.username);
-    if(!existingUser) {
-        return console.log("account not found");
-    }
+  return await response.json();
+}
 
-    if(value.password !== existingUser.password){
-        return console.log("Password Is Wrong!");
-    }
-
-    return existingUser;
+export async function signIn(data) {
+  return await fetch("/api/auth/login", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 }

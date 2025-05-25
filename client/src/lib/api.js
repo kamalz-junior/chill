@@ -34,9 +34,41 @@ export async function createUser(data) {
   return await response.json();
 }
 
-export async function updateUser(id, data) {
+export async function updateUser(id, data, token) {
   const response = await fetch(`/api/users/${id}`, {
     method: "PATCH",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    return new Error(response.statusText);
+  }
+
+  return await response.json();
+}
+
+export async function deleteUser(id, token) {
+  const response = await fetch(`/api/users/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    return new Error(response.statusText);
+  }
+
+  return await response.json();
+}
+
+export async function createWatchlist(data) {
+  const response = await fetch("/api/watchlist", {
+    method: "POST",
     headers: {
       "content-type": "application/json",
     },
@@ -50,8 +82,8 @@ export async function updateUser(id, data) {
   return await response.json();
 }
 
-export async function deleteUser(id) {
-  const response = await fetch(`/api/users/${id}`, {
+export async function deleteWatchlist(id) {
+  const response = await fetch(`/api/watchlist/${id}`, {
     method: "DELETE",
   });
 

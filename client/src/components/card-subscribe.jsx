@@ -5,7 +5,7 @@ import { button } from "./ui/button";
 export default function CardSubscibe({ isPremium, name, date }) {
   return (
     <div
-      className={`h-fit w-fit rounded-md border p-6 md:w-1/2 ${isPremium ? "bg-primary" : "bg-muted"}`}
+      className={`h-fit w-fit rounded-md border p-6 ${isPremium ? "bg-primary" : "bg-muted"}`}
     >
       <div className="flex items-center gap-4">
         <img src="images/Warning.png" alt="" className="size-22" />

@@ -11,12 +11,15 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signIn(user).then((res) => {
-      if (!res) return;
+    const res = await signIn(user);
+    const { data } = await res.json();
 
-      setUser(res);
-      navigate("/");
-    });
+    if(!res.ok){
+      console.log(res);
+    }else {
+      setUser(data);
+      navigate("/")
+    }
   };
 
   return (
@@ -31,16 +34,17 @@ export default function SignIn() {
         </div>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="grid gap-2">
-            <label htmlFor="username" className="font-medium text-sm">
-              Username
+            <label htmlFor="email" className="font-medium text-sm">
+              Email
             </label>
             <Input
-              id="username"
-              placeholder="Masukan username"
+              id="email"
+              type="email"
+              placeholder="Masukan email"
               onChange={(e) =>
                 setUser({
                   ...user,
-                  username: e.target.value,
+                  email: e.target.value,
                 })
               }
               required

@@ -1,8 +1,11 @@
 {
   "name": "chill",
-  "private": true,
   "version": "0.1.0",
-  "workspaces": ["client", "server"],
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "concurrently": "^9.1.2"
+  },
+  "private": true,
   "scripts": {
     "dev:client": "cd client && bun run dev",
     "dev:server": "cd server && bun run dev",
@@ -10,8 +13,5 @@
     "lint": "biome lint .",
     "lint:fix": "biome check . --apply-unsafe"
   },
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "concurrently": "^9.1.2"
-  }
+  "workspaces": ["client", "server"]
 }

@@ -6,43 +6,48 @@ import Carousel from "~/components/ui/carousel";
 import { getMovie, getMovieRecommended } from "~/lib/tmdb";
 
 export default function MovieDetail() {
-  const [movie, setMovie] = useState(null);
-  const [recommendations, setRecommendations] = useState(null);
+	const [movie, setMovie] = useState(null);
+	const [recommendations, setRecommendations] = useState(null);
 
-  const { movieId } = useParams();
+	const { movieId } = useParams();
 
-  useEffect(() => {
-    getMovie(movieId).then((res) => {
-      setMovie(res);
-    });
-    getMovieRecommended(movieId).then((res) => {
-      setRecommendations(res.results);
-    });
-  }, []);
+	useEffect(() => {
+		const fetchData = async () => {
+			const [movieRes, recommendationsRes] = await Promise.all([
+				getMovie(movieId),
+				getMovieRecommended(movieId),
+			]);
 
-  if (!movie) return;
+			setMovie(movieRes);
+			setRecommendations(recommendationsRes.results);
+		};
 
-  return (
-    <main className="space-y-8">
-      <PosterInfo data={movie} />
-      <section className="container space-y-6">
-        <h2 className="font-medium text-2xl">Recommendations</h2>
-        <Carousel controls>
-          {recommendations.map((r) => (
-            <Link
-              key={r.id}
-              to={`/movies/${r.id}`}
-              className="min-w-0 shrink-0 grow-0 basis-1/3 lg:basis-1/5"
-            >
-              <PosterCard
-                title={r.name || r.title}
-                src={r.poster_path}
-                premium={false}
-              />
-            </Link>
-          ))}
-        </Carousel>
-      </section>
-    </main>
-  );
+		fetchData();
+	}, [movieId]);
+
+	if (!movie) return;
+
+	return (
+		<main className="container space-y-8">
+			<PosterInfo data={movie} />
+			<section className="space-y-6">
+				<h2 className="font-medium text-2xl">Recommendations</h2>
+				<Carousel controls>
+					{recommendations.map((r) => (
+						<Link
+							key={r.id}
+							to={`/movies/${r.id}`}
+							className="min-w-0 shrink-0 grow-0 basis-1/2 md:basis-1/4 xl:basis-1//6"
+						>
+							<PosterCard
+								title={r.name || r.title}
+								src={r.poster_path}
+								premium={false}
+							/>
+						</Link>
+					))}
+				</Carousel>
+			</section>
+		</main>
+	);
 }
