@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "dev": "bun --hot index.js"
+    "dev": "bun --hot index.js",
+    "start": "bun index.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",

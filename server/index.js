@@ -3,11 +3,13 @@ import cors from "cors";
 import express from "express";
 import multer from "multer";
 import { authenticateToken } from "~/middleware";
+import { env } from "~/env";
 import auth from "~/routes/auth";
 import users from "~/routes/users";
 import watchlist from "~/routes/watchlist";
 
 const app = express();
+const port = env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -27,6 +29,6 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(8080, () => {
-  console.log("Server running on port 8080");
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });

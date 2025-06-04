@@ -1,5 +1,7 @@
+import { API_URL } from "~/lib/api";
+
 export async function signUp(data) {
-  const response = await fetch("/api/auth/register", {
+  const response = await fetch(`${API_URL}/auth/register`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -15,7 +17,7 @@ export async function signUp(data) {
 }
 
 export async function signIn(data) {
-  return await fetch("/api/auth/login", {
+  return await fetch(`${API_URL}/auth/login`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

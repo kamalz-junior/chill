@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import CardSubscibe from "~/components/card-subscribe";
 import Button from "~/components/ui/button";
 import Input from "~/components/ui/input";
-import { deleteUser, updateUser } from "~/lib/api";
+import { API_URL, deleteUser, updateUser } from "~/lib/api";
 import { useUser } from "~/lib/store";
 
 export default function Profile() {
@@ -95,7 +95,7 @@ export default function Profile() {
                     previewUrl || user.avatar_path ? (
                       <img src={
                         user.avatar_path
-                        ? `http://localhost:8080/uploads${user.avatar_path}`
+                        ? `${API_URL}/uploads${user.avatar_path}`
                         : previewUrl
                       } 
                       alt={user.name} 
